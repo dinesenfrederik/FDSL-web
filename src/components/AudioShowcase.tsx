@@ -33,7 +33,7 @@ export const AudioShowcase: React.FC<AudioShowcaseProps> = ({ currentLang }) => 
     'track-prophers-stand-tall': 30,
     'track-raised-with-wolves': 25,
     'track-sweaty-palms': 20,
-    'track-07-final-mix': 16
+    'track-illuminate-the-sky': 16
   });
 
   const t = TRANSLATIONS[currentLang].showcase;
@@ -220,12 +220,7 @@ export const AudioShowcase: React.FC<AudioShowcaseProps> = ({ currentLang }) => 
                   <span className={isPlaying ? 'text-[#FF9F0A] font-semibold' : ''}>
                     {formatTime(currentSeconds)}
                   </span>
-                  <span className="flex items-center gap-1.5">
-                    <span className="text-[#FF9F0A] text-[10px] font-bold bg-[#FF9F0A]/10 px-1.5 py-0.5 rounded border border-[#FF9F0A]/20">
-                      MASTER
-                    </span>
-                    <span>{track.duration}</span>
-                  </span>
+                  <span>{track.duration}</span>
                 </div>
               </div>
 

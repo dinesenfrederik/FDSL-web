@@ -1,5 +1,13 @@
 import { TrackData, PricingPlan, ClientHubComment } from '../types';
 
+import kingdomsAudio from '../assets/audio/Kingdoms.mp3';
+import bastionAudio from '../assets/audio/Bastion.mp3';
+import acridAudio from '../assets/audio/Acrid - Curse(2).mp3';
+import prophersAudio from '../assets/audio/Prophers - Stand Tall(2).mp3';
+import wolvesAudio from '../assets/audio/Raised With Wolves(2).mp3';
+import sweatyAudio from '../assets/audio/Sweaty Palms v3.mp3';
+import illuminateAudio from '../assets/audio/Illuminate The Sky(2).mp3';
+
 export const TRACKS_DATA: TrackData[] = [
   {
     id: 'track-kingdoms',
@@ -14,7 +22,7 @@ export const TRACKS_DATA: TrackData[] = [
     bpm: 140,
     sampleRate: '48kHz / 24-bit',
     audioFrequency: 138,
-    finalMixSrc: '/audio/Kingdoms.mp3',
+    finalMixSrc: kingdomsAudio,
     waveformBars: [6, 12, 10, 15, 12, 16, 10, 14, 16, 12, 8, 14, 10, 16, 12, 8, 14, 16, 12, 10, 15, 14, 16, 8]
   },
   {
@@ -30,7 +38,7 @@ export const TRACKS_DATA: TrackData[] = [
     bpm: 125,
     sampleRate: '48kHz / 24-bit',
     audioFrequency: 125,
-    finalMixSrc: '/audio/Bastion.mp3',
+    finalMixSrc: bastionAudio,
     waveformBars: [4, 8, 12, 14, 10, 16, 12, 8, 14, 16, 10, 6, 12, 16, 14, 10, 16, 12, 8, 14, 16, 10, 12, 8]
   },
   {
@@ -46,7 +54,7 @@ export const TRACKS_DATA: TrackData[] = [
     bpm: 150,
     sampleRate: '96kHz / 24-bit',
     audioFrequency: 145,
-    finalMixSrc: '/audio/Acrid - Curse(2).mp3',
+    finalMixSrc: acridAudio,
     waveformBars: [8, 10, 14, 16, 12, 6, 14, 16, 10, 12, 16, 14, 8, 12, 16, 14, 10, 16, 12, 8, 14, 16, 10, 6]
   },
   {
@@ -62,7 +70,7 @@ export const TRACKS_DATA: TrackData[] = [
     bpm: 165,
     sampleRate: '48kHz / 24-bit',
     audioFrequency: 110,
-    finalMixSrc: '/audio/Prophers - Stand Tall(2).mp3',
+    finalMixSrc: prophersAudio,
     waveformBars: [10, 14, 8, 16, 14, 12, 16, 10, 8, 14, 16, 12, 10, 16, 14, 8, 12, 16, 10, 14, 16, 12, 8, 14]
   },
   {
@@ -78,7 +86,7 @@ export const TRACKS_DATA: TrackData[] = [
     bpm: 135,
     sampleRate: '48kHz / 24-bit',
     audioFrequency: 118,
-    finalMixSrc: '/audio/Raised With Wolves(2).mp3',
+    finalMixSrc: wolvesAudio,
     waveformBars: [6, 12, 16, 14, 10, 16, 12, 8, 14, 16, 10, 14, 16, 12, 8, 14, 16, 10, 6, 12, 16, 14, 10, 16]
   },
   {
@@ -94,13 +102,13 @@ export const TRACKS_DATA: TrackData[] = [
     bpm: 130,
     sampleRate: '48kHz / 24-bit',
     audioFrequency: 130,
-    finalMixSrc: '/audio/Sweaty Palms v3.mp3',
+    finalMixSrc: sweatyAudio,
     waveformBars: [8, 14, 10, 16, 12, 6, 14, 16, 10, 12, 16, 8, 14, 10, 16, 12, 8, 14, 16, 10, 12, 16, 14, 10]
   },
   {
-    id: 'track-07-final-mix',
-    title: 'Track_07_FinalMix.mp3',
-    fileName: 'Track_07_FinalMix.mp3',
+    id: 'track-illuminate-the-sky',
+    title: 'Illuminate The Sky(2).mp3',
+    fileName: 'Illuminate The Sky(2).mp3',
     artist: 'FD Sound Labs',
     genre: 'Atmospheric / Prog Metal',
     tags: 'FULL MIX & MASTER • SPATIAL REVERB • DYNAMIC CRESCENDO',
@@ -110,7 +118,7 @@ export const TRACKS_DATA: TrackData[] = [
     bpm: 118,
     sampleRate: '96kHz / 24-bit',
     audioFrequency: 105,
-    finalMixSrc: '/audio/Track_07_FinalMix.mp3',
+    finalMixSrc: illuminateAudio,
     waveformBars: [4, 6, 10, 12, 14, 16, 14, 12, 16, 14, 10, 12, 14, 16, 16, 12, 8, 14, 16, 12, 8, 10, 14, 16]
   }
 ];
