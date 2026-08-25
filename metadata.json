@@ -1,0 +1,6 @@
+{
+  "name": "FD Sound Labs",
+  "description": "High-impact remote mixing and studio tracking for modern rock & metal bands.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
