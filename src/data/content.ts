@@ -1,13 +1,5 @@
 import { TrackData, PricingPlan, ClientHubComment } from '../types';
 
-import kingdomsAudio from '../assets/audio/Kingdoms.mp3';
-import bastionAudio from '../assets/audio/Bastion.mp3';
-import acridAudio from '../assets/audio/Acrid - Curse(2).mp3';
-import prophersAudio from '../assets/audio/Prophers - Stand Tall(2).mp3';
-import wolvesAudio from '../assets/audio/Raised With Wolves(2).mp3';
-import sweatyAudio from '../assets/audio/Sweaty Palms v3.mp3';
-import illuminateAudio from '../assets/audio/Illuminate The Sky(2).mp3';
-
 export const TRACKS_DATA: TrackData[] = [
   {
     id: 'track-kingdoms',
@@ -22,7 +14,7 @@ export const TRACKS_DATA: TrackData[] = [
     bpm: 140,
     sampleRate: '48kHz / 24-bit',
     audioFrequency: 138,
-    finalMixSrc: kingdomsAudio,
+    finalMixSrc: '/audio/Kingdoms.mp3',
     waveformBars: [6, 12, 10, 15, 12, 16, 10, 14, 16, 12, 8, 14, 10, 16, 12, 8, 14, 16, 12, 10, 15, 14, 16, 8]
   },
   {
@@ -38,7 +30,7 @@ export const TRACKS_DATA: TrackData[] = [
     bpm: 125,
     sampleRate: '48kHz / 24-bit',
     audioFrequency: 125,
-    finalMixSrc: bastionAudio,
+    finalMixSrc: '/audio/Bastion.mp3',
     waveformBars: [4, 8, 12, 14, 10, 16, 12, 8, 14, 16, 10, 6, 12, 16, 14, 10, 16, 12, 8, 14, 16, 10, 12, 8]
   },
   {
@@ -54,7 +46,7 @@ export const TRACKS_DATA: TrackData[] = [
     bpm: 150,
     sampleRate: '96kHz / 24-bit',
     audioFrequency: 145,
-    finalMixSrc: acridAudio,
+    finalMixSrc: '/audio/Acrid - Curse(2).mp3',
     waveformBars: [8, 10, 14, 16, 12, 6, 14, 16, 10, 12, 16, 14, 8, 12, 16, 14, 10, 16, 12, 8, 14, 16, 10, 6]
   },
   {
@@ -70,7 +62,7 @@ export const TRACKS_DATA: TrackData[] = [
     bpm: 165,
     sampleRate: '48kHz / 24-bit',
     audioFrequency: 110,
-    finalMixSrc: prophersAudio,
+    finalMixSrc: '/audio/Prophers - Stand Tall(2).mp3',
     waveformBars: [10, 14, 8, 16, 14, 12, 16, 10, 8, 14, 16, 12, 10, 16, 14, 8, 12, 16, 10, 14, 16, 12, 8, 14]
   },
   {
@@ -86,7 +78,7 @@ export const TRACKS_DATA: TrackData[] = [
     bpm: 135,
     sampleRate: '48kHz / 24-bit',
     audioFrequency: 118,
-    finalMixSrc: wolvesAudio,
+    finalMixSrc: '/audio/Raised With Wolves(2).mp3',
     waveformBars: [6, 12, 16, 14, 10, 16, 12, 8, 14, 16, 10, 14, 16, 12, 8, 14, 16, 10, 6, 12, 16, 14, 10, 16]
   },
   {
@@ -102,7 +94,7 @@ export const TRACKS_DATA: TrackData[] = [
     bpm: 130,
     sampleRate: '48kHz / 24-bit',
     audioFrequency: 130,
-    finalMixSrc: sweatyAudio,
+    finalMixSrc: '/audio/Sweaty Palms v3.mp3',
     waveformBars: [8, 14, 10, 16, 12, 6, 14, 16, 10, 12, 16, 8, 14, 10, 16, 12, 8, 14, 16, 10, 12, 16, 14, 10]
   },
   {
@@ -118,7 +110,7 @@ export const TRACKS_DATA: TrackData[] = [
     bpm: 118,
     sampleRate: '96kHz / 24-bit',
     audioFrequency: 105,
-    finalMixSrc: illuminateAudio,
+    finalMixSrc: '/audio/Illuminate The Sky(2).mp3',
     waveformBars: [4, 6, 10, 12, 14, 16, 14, 12, 16, 14, 10, 12, 14, 16, 16, 12, 8, 14, 16, 12, 8, 10, 14, 16]
   }
 ];

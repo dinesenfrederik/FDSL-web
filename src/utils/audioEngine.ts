@@ -15,10 +15,10 @@ class AudioEngine {
   private isPlaying = false;
   private activeTrack: TrackData | null = null;
   private mode: 'pre' | 'final' = 'final';
-  private currentTime = 0; // seconds
-  private duration = 180; // seconds
+  private currentTime = 0; // in seconds
+  private duration = 180; // in seconds
 
-  // Real HTML5 Audio Element for playback
+  // Pure HTML5 Audio Element
   private audioEl: HTMLAudioElement | null = null;
   private listeners: Set<StateListener> = new Set();
   private animFrameId: number | null = null;
@@ -28,6 +28,15 @@ class AudioEngine {
       this.audioEl = new Audio();
       this.setupAudioListeners();
     }
+  }
+
+  private resolveUrl(src: string): string {
+    if (!src) return '';
+    // If already absolute URL or data URI, return as is; otherwise encode URI properly
+    if (src.startsWith('http://') || src.startsWith('https://') || src.startsWith('data:') || src.startsWith('blob:')) {
+      return src;
+    }
+    return encodeURI(src);
   }
 
   private setupAudioListeners() {
@@ -66,11 +75,13 @@ class AudioEngine {
       this.notify();
     };
 
-    this.audioEl.onerror = (e) => {
+    this.audioEl.onerror = () => {
       const error = this.audioEl?.error;
+      const targetSrc = this.audioEl?.src || this.activeTrack?.finalMixSrc;
       console.error(
-        `[AudioEngine] Error playing track "${this.activeTrack?.title || 'Unknown'}":`,
-        error ? `code: ${error.code}, message: ${error.message}` : e
+        'Audio playback error:',
+        targetSrc,
+        error ? `code: ${error.code}, message: ${error.message}` : 'Failed to load audio'
       );
       this.isPlaying = false;
       this.stopSmoothLoop();
@@ -108,9 +119,11 @@ class AudioEngine {
     this.mode = newMode;
 
     if (this.activeTrack && this.audioEl) {
-      const targetSrc = this.mode === 'pre'
+      const rawSrc = this.mode === 'pre'
         ? (this.activeTrack.preMixSrc || this.activeTrack.finalMixSrc)
         : this.activeTrack.finalMixSrc;
+
+      const targetSrc = this.resolveUrl(rawSrc || '');
 
       if (targetSrc) {
         const prevTime = this.audioEl.currentTime;
@@ -119,7 +132,7 @@ class AudioEngine {
         this.audioEl.currentTime = prevTime;
         if (wasPlaying) {
           this.audioEl.play().catch((err) => {
-            console.error(`[AudioEngine] Failed to resume on mode switch for track "${this.activeTrack?.title}":`, err);
+            console.error('Audio playback error:', targetSrc, err);
           });
         }
       }
@@ -135,11 +148,11 @@ class AudioEngine {
     }
 
     if (!this.audioEl) {
-      console.error('[AudioEngine] HTMLAudioElement is not supported in this environment.');
+      console.error('Audio playback error: HTMLAudioElement is not available.');
       return;
     }
 
-    // If same track is already playing, just seek or keep playing
+    // If same track is already playing, seek or keep playing
     if (this.isPlaying && this.activeTrack?.id === track.id) {
       if (startFromSec !== undefined) {
         this.seek(startFromSec);
@@ -156,17 +169,18 @@ class AudioEngine {
     this.mode = mode;
     this.currentTime = startFromSec !== undefined ? startFromSec : 0;
 
-    const audioSrc = mode === 'pre' && track.preMixSrc ? track.preMixSrc : track.finalMixSrc;
+    const rawSrc = mode === 'pre' && track.preMixSrc ? track.preMixSrc : track.finalMixSrc;
+    const targetSrc = this.resolveUrl(rawSrc || '');
 
-    if (!audioSrc) {
-      console.error(`[AudioEngine] No audio source found for track "${track.title}" (ID: ${track.id})`);
+    if (!targetSrc) {
+      console.error('Audio playback error:', rawSrc, 'No audio source found for track ' + track.title);
       this.isPlaying = false;
       this.notify();
       return;
     }
 
     try {
-      this.audioEl.src = audioSrc;
+      this.audioEl.src = targetSrc;
       this.audioEl.currentTime = this.currentTime;
 
       const playPromise = this.audioEl.play();
@@ -178,14 +192,14 @@ class AudioEngine {
             this.notify();
           })
           .catch((err) => {
-            console.error(`[AudioEngine] Playback failed for "${track.title}":`, err);
+            console.error('Audio playback error:', targetSrc, err);
             this.isPlaying = false;
             this.stopSmoothLoop();
             this.notify();
           });
       }
     } catch (err) {
-      console.error(`[AudioEngine] Exception during track setup for "${track.title}":`, err);
+      console.error('Audio playback error:', targetSrc, err);
       this.isPlaying = false;
       this.stopSmoothLoop();
       this.notify();
@@ -216,7 +230,8 @@ class AudioEngine {
           this.notify();
         })
         .catch((err) => {
-          console.error(`[AudioEngine] Failed to resume playback for "${this.activeTrack?.title}":`, err);
+          const targetSrc = this.audioEl?.src || this.activeTrack?.finalMixSrc;
+          console.error('Audio playback error:', targetSrc, err);
         });
     }
   }
@@ -237,7 +252,7 @@ class AudioEngine {
       try {
         this.audioEl.currentTime = this.currentTime;
       } catch (err) {
-        console.error('[AudioEngine] Seek error:', err);
+        console.error('Audio playback error during seek:', this.audioEl.src, err);
       }
     }
     this.notify();
